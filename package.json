@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js",
+    "links": "node index.js --links",
+    "article": "node index.js --article",
+    "articles": "node index.js --articles",
     "lint": "eslint './**/*.{ts,tsx,js}'",
     "lint-fix": "eslint --fix './**/*.{ts,tsx,js}'"
   },
