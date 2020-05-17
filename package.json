@@ -1,0 +1,17 @@
+{
+  "name": "elpais-scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js",
+    "lint": "eslint './**/*.{ts,tsx,js}'",
+    "lint-fix": "eslint --fix './**/*.{ts,tsx,js}'"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^3.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0"
+  }
+}
