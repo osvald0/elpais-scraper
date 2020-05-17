@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "commander": "^5.1.0",
     "puppeteer": "^3.0.4"
   },
   "devDependencies": {
