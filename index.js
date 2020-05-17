@@ -22,10 +22,9 @@ const getLinks = async () => {
             )
         );
 
-        const supportedLinks = links.
-            filter((link) =>
-                !UNSUPPORTED_SECTIONS.includes(link.split('/')[1])
-            );
+        const supportedLinks = links.filter((link) =>
+            !UNSUPPORTED_SECTIONS.includes(link.split('/')[1])
+        );
 
         return Array.from(new Set(supportedLinks));
 
@@ -38,10 +37,10 @@ const getLinks = async () => {
 };
 
 const getArticle = async (path) => {
+    const PAGE_URL = path.includes('elpais.com.uy') ? path : `${BASE_URL}/${path}`;
     const browser = await puppeteer.launch(CONFIG);
 
     try {
-        const PAGE_URL = `${BASE_URL}/${path}`;
         const page = await browser.newPage();
 
         await page.goto(PAGE_URL, { timeout: 60000 });
@@ -66,8 +65,8 @@ const getArticle = async (path) => {
         return article;
 
     } catch (error) {
-        console.log(error);
-        console.log('Link: ', `${BASE_URL}/${path}`);
+        console.log('The article link provided is invalid.');
+        console.log('Link: ', PAGE_URL);
 
     } finally {
         await browser.close();
@@ -95,4 +94,20 @@ const getArticles = async () => {
     console.log('Finish: ', new Date);
 };
 
-getArticles();
+const run = async () => {
+    const args = process.argv;
+
+    if (args.length > 2) {
+        const url = args[2].split('--article=');
+        if (url.length > 0) {
+            const article = await getArticle(url[1]);
+            console.log(article);
+        } else {
+            console.log('Sorry, the argument is not supported :(');
+        }
+    } else {
+        await getArticles();
+    }
+};
+
+run();
